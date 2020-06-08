@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SignUpActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="80dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/signUp_background_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/txt_lets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:text="@string/lets_start"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_letsDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lets_startDesc"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_lets" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_name"
+                        app:layout_constraintStart_toStartOf="@id/edt_name"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_letsDesc" />
+
+                    <ImageView
+                        android:id="@+id/name_Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_name"
+                        app:srcCompat="@drawable/user_icon" />
+
+                    <EditText
+                        android:id="@+id/edt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/name_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@+id/name_Icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_fatherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/father_name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_fatherName"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+
+                    <ImageView
+                        android:id="@+id/father_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/user_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_fatherName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_fatherName" />
+
+                    <EditText
+                        android:id="@+id/edt_fatherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/father_name_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/father_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_fatherName"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_motherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/mother_name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_motherName"
+                        app:layout_constraintTop_toBottomOf="@id/edt_fatherName" />
+
+                    <ImageView
+                        android:id="@+id/mother_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/user_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_motherName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_motherName" />
+
+                    <EditText
+                        android:id="@+id/edt_motherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/mother_name_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/mother_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_motherName"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/dob"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_dob"
+                        app:layout_constraintTop_toBottomOf="@id/edt_motherName" />
+
+                    <TextView
+                        android:id="@+id/edt_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/customer_field_border"
+                        android:ems="10"
+                        android:gravity="center_vertical"
+                        android:hint="@string/dob_hint"
+                        android:importantForAutofill="no"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_motherName"
+                        app:layout_constraintTop_toBottomOf="@id/tv_dob"
+                        tools:ignore="LabelFor" />
+
+                    <ImageView
+                        android:id="@+id/img_calender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:contentDescription="@string/image"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_dob"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_dob"
+                        app:srcCompat="@drawable/calender" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_gender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/edt_dob"
+                        app:layout_constraintTop_toBottomOf="@id/edt_dob">
+
+                        <TextView
+                            android:id="@+id/tv_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="@string/gender"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/male" />
+
+                            <RadioButton
+                                android:id="@+id/female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="@string/female" />
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_panNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/pan_no"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_panNo"
+                        app:layout_constraintTop_toBottomOf="@id/ll_gender" />
+
+                    <ImageView
+                        android:id="@+id/pan_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_panNo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_panNo"
+                        app:srcCompat="@drawable/card_number" />
+
+                    <EditText
+                        android:id="@+id/edt_panNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
+                        android:ems="10"
+                        android:hint="@string/pan_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/pan_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_panNo"
+                        app:layout_goneMarginStart="10dp"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_aadhaar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/aadhaar_no"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_aadhaar"
+                        app:layout_constraintTop_toBottomOf="@id/edt_panNo" />
+
+                    <ImageView
+                        android:id="@+id/aadhaar_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/card_number"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_aadhaar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_aadhaar" />
+
+                    <EditText
+                        android:id="@+id/edt_aadhaar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="0123456789"
+                        android:ems="10"
+                        android:hint="@string/aadhaar_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="12"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/aadhaar_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_aadhaar"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_voter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/voter_card"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_voter"
+                        app:layout_constraintTop_toBottomOf="@id/edt_aadhaar" />
+
+                    <ImageView
+                        android:id="@+id/voter_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/card_number"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_voter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_voter" />
+
+                    <EditText
+                        android:id="@+id/edt_voter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
+                        android:ems="10"
+                        android:hint="@string/voter_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:maxLength="12"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/voter_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_voter"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_ration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/ration_card"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_ration"
+                        app:layout_constraintTop_toBottomOf="@id/edt_voter" />
+
+                    <ImageView
+                        android:id="@+id/ration_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/card_number"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_ration"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_ration" />
+
+                    <EditText
+                        android:id="@+id/edt_ration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="0123456789"
+                        android:ems="10"
+                        android:hint="@string/ration_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/ration_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_ration"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_nationality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/nationality"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_nationality"
+                        app:layout_constraintTop_toBottomOf="@id/edt_ration" />
+
+                    <ImageView
+                        android:id="@+id/nationality_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/nationality"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_nationality"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_nationality" />
+
+                    <EditText
+                        android:id="@+id/edt_nationality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/nationality_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/nationality_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_nationality"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_house_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/house_number"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_house_no"
+                        app:layout_constraintTop_toBottomOf="@id/edt_nationality" />
+
+                    <ImageView
+                        android:id="@+id/house_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/village"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_house_no"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_house_no" />
+
+                    <EditText
+                        android:id="@+id/edt_house_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:ems="10"
+                        android:hint="@string/house_number_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/house_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_house_no"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_street_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/street_number"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_street_number"
+                        app:layout_constraintTop_toBottomOf="@id/edt_house_no" />
+
+                    <ImageView
+                        android:id="@+id/street_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/village"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_street_number"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_street_number" />
+
+                    <EditText
+                        android:id="@+id/edt_street_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:ems="10"
+                        android:hint="@string/street_number_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/street_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_street_number"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_block"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/block_number"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_block"
+                        app:layout_constraintTop_toBottomOf="@id/edt_street_number" />
+
+                    <ImageView
+                        android:id="@+id/block_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/village"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_block"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_block" />
+
+                    <EditText
+                        android:id="@+id/edt_block"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789 "
+                        android:ems="10"
+                        android:hint="@string/block_number_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/block_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_block"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_landmark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/near_by_landmark"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_landmark"
+                        app:layout_constraintTop_toBottomOf="@id/edt_block" />
+
+                    <ImageView
+                        android:id="@+id/landmark_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/village"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_landmark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_landmark" />
+
+                    <EditText
+                        android:id="@+id/edt_landmark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
+                        android:ems="10"
+                        android:hint="@string/landmark_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/landmark_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_landmark"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_village"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/village"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_village"
+                        app:layout_constraintTop_toBottomOf="@id/edt_landmark" />
+
+                    <ImageView
+                        android:id="@+id/village_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/village"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_village"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_village" />
+
+                    <EditText
+                        android:id="@+id/edt_village"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/village_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/village_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_village"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_postOffice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/post_off"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_postOffice"
+                        app:layout_constraintTop_toBottomOf="@id/edt_village" />
+
+                    <ImageView
+                        android:id="@+id/post_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/office_station"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_postOffice"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_postOffice" />
+
+                    <EditText
+                        android:id="@+id/edt_postOffice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/post_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/post_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_postOffice"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_policeSt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/police_st"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_policeSt"
+                        app:layout_constraintTop_toBottomOf="@id/edt_postOffice"
+                        tools:layout_editor_absoluteX="188dp" />
+
+                    <ImageView
+                        android:id="@+id/police_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/office_station"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_policeSt"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_policeSt" />
+
+                    <EditText
+                        android:id="@+id/edt_policeSt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/police_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/police_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_policeSt"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_district"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/dist"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_district"
+                        app:layout_constraintTop_toBottomOf="@id/edt_policeSt" />
+
+                    <ImageView
+                        android:id="@+id/district_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/district_city"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_district"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_district" />
+
+                    <EditText
+                        android:id="@+id/edt_district"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/district_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/district_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_district"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/city"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_city"
+                        app:layout_constraintTop_toBottomOf="@id/edt_district" />
+
+                    <ImageView
+                        android:id="@+id/city_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/district_city"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_city"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_city" />
+
+                    <EditText
+                        android:id="@+id/edt_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/city_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/city_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_city"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_pinCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/pinCode"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_pinCode"
+                        app:layout_constraintTop_toBottomOf="@id/edt_city" />
+
+                    <EditText
+                        android:id="@+id/edt_pinCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_border"
+                        android:ems="10"
+                        android:hint="@string/pincode_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toStartOf="@id/edt_city"
+                        app:layout_constraintTop_toBottomOf="@id/tv_pinCode"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_mobile"
+                        app:layout_constraintTop_toBottomOf="@id/edt_pinCode" />
+
+                    <ImageView
+                        android:id="@+id/mobile_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/phone_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_mobile"
+                        app:layout_constraintEnd_toStartOf="@id/edt_mobile"
+                        app:layout_constraintTop_toTopOf="@id/tv_mobile" />
+
+                    <EditText
+                        android:id="@+id/edt_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_border"
+                        android:ems="10"
+                        android:hint="@string/mobile_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toStartOf="@id/edt_pinCode"
+                        app:layout_constraintTop_toBottomOf="@id/tv_mobile"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/email"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_email"
+                        app:layout_constraintTop_toBottomOf="@id/edt_mobile" />
+
+                    <ImageView
+                        android:id="@+id/email_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/email_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_email"
+                        app:layout_constraintEnd_toStartOf="@id/edt_email"
+                        app:layout_constraintTop_toTopOf="@id/tv_email" />
+
+                    <EditText
+                        android:id="@+id/edt_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@."
+                        android:ems="10"
+                        android:hint="@string/email_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toStartOf="@id/edt_mobile"
+                        app:layout_constraintTop_toBottomOf="@id/tv_email"
+                        tools:ignore="LabelFor" />
+
+
+                    <TextView
+                        android:id="@+id/tv_bankDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/bank"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edt_email" />
+
+                    <TextView
+                        android:id="@+id/tv_bankName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/bank_name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_bankName"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bankDetails" />
+
+                    <ImageView
+                        android:id="@+id/bank_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/bank"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_bankName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_bankName" />
+
+                    <EditText
+                        android:id="@+id/edt_bankName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/bank_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/bank_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bankName"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_branch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/branch"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_branch"
+                        app:layout_constraintTop_toBottomOf="@id/edt_bankName" />
+
+                    <ImageView
+                        android:id="@+id/branch_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/bank"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_branch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_branch" />
+
+                    <EditText
+                        android:id="@+id/edt_branch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/branch_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/branch_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_branch"
+                        tools:ignore="LabelFor" />
+
+                    <EditText
+                        android:id="@+id/edt_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/field_border"
+                        android:drawableStart="@drawable/password_icon"
+                        android:drawablePadding="12dp"
+                        android:ems="10"
+                        android:hint="@string/password"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="5dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_branch" />
+
+                    <EditText
+                        android:id="@+id/edt_confirmPass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/field_border"
+                        android:drawableStart="@drawable/password_icon"
+                        android:drawablePadding="12dp"
+                        android:ems="10"
+                        android:hint="@string/confirm_pass"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="5dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+
+                    <Button
+                        android:id="@+id/btn_sendOtp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_border"
+                        android:text="@string/send_otp"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edt_confirmPass" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="50dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btn_sendOtp"
+                        tools:ignore="TooManyViews">
+
+                        <TextView
+                            android:id="@+id/txt_already"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/already"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/btn_sendOtp" />
+
+                        <TextView
+                            android:id="@+id/txt_loginHere"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:text="@string/login_here"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/txt_already"
+                            tools:ignore="TooManyViews" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/verify_block_background_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/edt_block_coordinator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/field_border"
+                        android:hint="@string/block_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/check_coordinator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="50dp"
+                        android:text="@string/check"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_block_coordinator" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/verify_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/edt_verifyOtp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/customer_field_border"
+                        android:ems="10"
+                        android:hint="@string/enter_otp"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/edt_verifyOtp"
+                        app:layout_constraintStart_toStartOf="@id/edt_verifyOtp"
+                        app:layout_constraintTop_toBottomOf="@id/edt_verifyOtp">
+
+                        <Button
+                            android:id="@+id/btn_goBack"
+                            style="?android:buttonBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_border"
+                            android:onClick="goBack"
+                            android:text="@string/go_back" />
+
+                        <Button
+                            android:id="@+id/btn_verifyOtp"
+                            style="?android:buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_border"
+                            android:onClick="verifyOtp"
+                            android:text="@string/verify_otp" />
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:visibility="gone"
+                    tools:ignore="TooManyViews" />
+
+            </FrameLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

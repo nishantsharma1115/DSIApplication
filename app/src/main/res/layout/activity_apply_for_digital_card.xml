@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="customer"
+            type="com.application.dsi.dataClass.Customer" />
+
+        <variable
+            name="fullAddress"
+            type="String" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/background_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".applyForDigitalCardActivity">
+
+            <TextView
+                android:id="@+id/tv_applyForDigitalCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textAllCaps="true"
+                android:text="@string/apply"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_applyForDigitalCard" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.name}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+            <TextView
+                android:id="@+id/tv_fatherName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/father_name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+            <TextView
+                android:id="@+id/fatherName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{customer.fatherName}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fatherName"
+                app:layout_constraintStart_toEndOf="@id/tv_fatherName"
+                app:layout_constraintTop_toTopOf="@id/tv_fatherName" />
+
+            <TextView
+                android:id="@+id/tv_motherName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/mother_name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fatherName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fatherName" />
+
+            <TextView
+                android:id="@+id/motherName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.motherName}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_motherName"
+                app:layout_constraintStart_toEndOf="@id/tv_motherName"
+                app:layout_constraintTop_toTopOf="@id/tv_motherName" />
+
+            <TextView
+                android:id="@+id/tv_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/dob"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_motherName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_motherName" />
+
+            <TextView
+                android:id="@+id/dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.dob}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_dob"
+                app:layout_constraintStart_toEndOf="@id/tv_dob"
+                app:layout_constraintTop_toTopOf="@id/tv_dob" />
+
+            <TextView
+                android:id="@+id/tv_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/gender"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_dob"
+                app:layout_constraintTop_toBottomOf="@+id/tv_dob" />
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.gender}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_gender"
+                app:layout_constraintStart_toEndOf="@id/tv_gender"
+                app:layout_constraintTop_toTopOf="@id/tv_gender" />
+
+            <TextView
+                android:id="@+id/tv_panNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/pan_no"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_gender"
+                app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+
+            <TextView
+                android:id="@+id/panNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.panNo}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_panNo"
+                app:layout_constraintStart_toEndOf="@id/tv_panNo"
+                app:layout_constraintTop_toTopOf="@id/tv_panNo" />
+
+            <TextView
+                android:id="@+id/tv_aadhaar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/aadhaar_number"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_panNo"
+                app:layout_constraintTop_toBottomOf="@+id/tv_panNo" />
+
+            <TextView
+                android:id="@+id/aadhaar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.aadhaarNo}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_aadhaar"
+                app:layout_constraintStart_toEndOf="@id/tv_aadhaar"
+                app:layout_constraintTop_toTopOf="@id/tv_aadhaar" />
+
+            <TextView
+                android:id="@+id/tv_fullAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/full_address"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_aadhaar"
+                app:layout_constraintTop_toBottomOf="@+id/tv_aadhaar" />
+
+            <TextView
+                android:id="@+id/fullAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="@{fullAddress}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fullAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_fullAddress"
+                app:layout_constraintTop_toTopOf="@id/tv_fullAddress" />
+
+            <TextView
+                android:id="@+id/tv_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/phone_number"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fullAddress"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fullAddress" />
+
+            <TextView
+                android:id="@+id/mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.mobile}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_mobile"
+                app:layout_constraintStart_toEndOf="@id/tv_mobile"
+                app:layout_constraintTop_toTopOf="@id/tv_mobile" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/email"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_mobile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_mobile" />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{customer.email}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_email"
+                app:layout_constraintStart_toEndOf="@id/tv_email"
+                app:layout_constraintTop_toTopOf="@id/tv_email" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/pay"
+                android:background="@drawable/button_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+</layout>

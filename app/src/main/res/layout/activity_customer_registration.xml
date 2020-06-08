@@ -1,0 +1,1649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".customerRegistrationActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/customerRegistrationLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/customerProfilePicture"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/profile_picture"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_editProfilePicture"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/edit_profile_picture"
+                        app:layout_constraintBottom_toBottomOf="@+id/customerProfilePicture"
+                        app:layout_constraintEnd_toEndOf="@+id/customerProfilePicture" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_name"
+                        app:layout_constraintStart_toStartOf="@id/edt_name"
+                        app:layout_constraintTop_toBottomOf="@+id/customerProfilePicture" />
+
+                    <ImageView
+                        android:id="@+id/name_Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_name"
+                        app:srcCompat="@drawable/user_icon" />
+
+                    <EditText
+                        android:id="@+id/edt_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/name_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@+id/name_Icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_fatherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/father_name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_fatherName"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+
+                    <ImageView
+                        android:id="@+id/father_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/user_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_fatherName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_fatherName" />
+
+                    <EditText
+                        android:id="@+id/edt_fatherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/father_name_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/father_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_fatherName"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_motherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/mother_name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_motherName"
+                        app:layout_constraintTop_toBottomOf="@id/edt_fatherName" />
+
+                    <ImageView
+                        android:id="@+id/mother_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/user_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_motherName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_motherName" />
+
+                    <EditText
+                        android:id="@+id/edt_motherName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/mother_name_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/mother_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_motherName"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_fatherOcc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/father_occ"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_fatherOcc"
+                        app:layout_constraintTop_toBottomOf="@id/edt_motherName" />
+
+                    <ImageView
+                        android:id="@+id/occ_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/work"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_fatherOcc"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_fatherOcc" />
+
+                    <EditText
+                        android:id="@+id/edt_fatherOcc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/occupation_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/occ_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_fatherOcc"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/dob"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_dob"
+                        app:layout_constraintTop_toBottomOf="@id/edt_fatherOcc" />
+
+                    <TextView
+                        android:id="@+id/edt_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/customer_field_border"
+                        android:ems="10"
+                        android:gravity="center_vertical"
+                        android:hint="@string/dob_hint"
+                        android:importantForAutofill="no"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/edt_fatherOcc"
+                        app:layout_constraintTop_toBottomOf="@id/tv_dob"
+                        tools:ignore="LabelFor" />
+
+                    <ImageView
+                        android:id="@+id/img_calender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:contentDescription="@string/image"
+                        app:layout_constraintBottom_toBottomOf="@+id/edt_dob"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_dob"
+                        app:srcCompat="@drawable/calender" />
+
+                    <TextView
+                        android:id="@+id/tv_panNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/pan_no"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_panNo"
+                        app:layout_constraintTop_toBottomOf="@id/edt_dob" />
+
+                    <ImageView
+                        android:id="@+id/pan_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_panNo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_panNo"
+                        app:srcCompat="@drawable/card_number" />
+
+                    <EditText
+                        android:id="@+id/edt_panNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
+                        android:ems="10"
+                        android:hint="@string/pan_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/pan_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_panNo"
+                        app:layout_goneMarginStart="10dp"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_aadhaar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/aadhaar_no"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_aadhaar"
+                        app:layout_constraintTop_toBottomOf="@id/edt_panNo" />
+
+                    <ImageView
+                        android:id="@+id/aadhaar_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/card_number"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_aadhaar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_aadhaar" />
+
+                    <EditText
+                        android:id="@+id/edt_aadhaar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="0123456789"
+                        android:ems="10"
+                        android:hint="@string/aadhaar_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="12"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/aadhaar_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_aadhaar"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_voter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/voter_card"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_voter"
+                        app:layout_constraintTop_toBottomOf="@id/edt_aadhaar" />
+
+                    <ImageView
+                        android:id="@+id/voter_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/card_number"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_voter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_voter" />
+
+                    <EditText
+                        android:id="@+id/edt_voter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
+                        android:ems="10"
+                        android:hint="@string/voter_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:maxLength="12"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/voter_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_voter"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_ration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/ration_card"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_ration"
+                        app:layout_constraintTop_toBottomOf="@id/edt_voter" />
+
+                    <ImageView
+                        android:id="@+id/ration_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/card_number"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_ration"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_ration" />
+
+                    <EditText
+                        android:id="@+id/edt_ration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="0123456789"
+                        android:ems="10"
+                        android:hint="@string/ration_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/ration_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_ration"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_nationality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/nationality"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_nationality"
+                        app:layout_constraintTop_toBottomOf="@id/edt_ration" />
+
+                    <ImageView
+                        android:id="@+id/nationality_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/nationality"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_nationality"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_nationality" />
+
+                    <EditText
+                        android:id="@+id/edt_nationality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/nationality_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/nationality_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_nationality"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_religion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/religion"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_religion"
+                        app:layout_constraintTop_toBottomOf="@id/edt_nationality" />
+
+                    <ImageView
+                        android:id="@+id/religion_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/religion"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_religion"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_religion" />
+
+                    <EditText
+                        android:id="@+id/edt_religion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/religion_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/religion_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_religion"
+                        tools:ignore="LabelFor" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_gender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintEnd_toEndOf="@id/edt_religion"
+                        app:layout_constraintStart_toStartOf="@id/edt_religion"
+                        app:layout_constraintTop_toBottomOf="@id/edt_religion">
+
+                        <TextView
+                            android:id="@+id/tv_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gender"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/male" />
+
+                            <RadioButton
+                                android:id="@+id/female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="@string/female" />
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_addressDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/address_details"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ll_gender" />
+
+                    <TextView
+                        android:id="@+id/tv_village"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/village"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_village"
+                        app:layout_constraintTop_toBottomOf="@id/tv_addressDetails" />
+
+                    <ImageView
+                        android:id="@+id/village_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/village"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_village"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_village" />
+
+                    <EditText
+                        android:id="@+id/edt_village"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/village_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/village_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_village"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_postOffice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/post_off"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_postOffice"
+                        app:layout_constraintTop_toBottomOf="@id/edt_village" />
+
+                    <ImageView
+                        android:id="@+id/post_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/office_station"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_postOffice"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_postOffice" />
+
+                    <EditText
+                        android:id="@+id/edt_postOffice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/post_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/post_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_postOffice"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_policeSt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/police_st"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_policeSt"
+                        app:layout_constraintTop_toBottomOf="@id/edt_postOffice"
+                        tools:layout_editor_absoluteX="188dp" />
+
+                    <ImageView
+                        android:id="@+id/police_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/office_station"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_policeSt"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_policeSt" />
+
+                    <EditText
+                        android:id="@+id/edt_policeSt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/police_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/police_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_policeSt"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_district"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/dist"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_district"
+                        app:layout_constraintTop_toBottomOf="@id/edt_policeSt" />
+
+                    <ImageView
+                        android:id="@+id/district_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/district_city"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_district"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_district" />
+
+                    <EditText
+                        android:id="@+id/edt_district"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/district_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/district_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_district"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/city"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_city"
+                        app:layout_constraintTop_toBottomOf="@id/edt_district" />
+
+                    <ImageView
+                        android:id="@+id/city_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/district_city"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_city"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_city" />
+
+                    <EditText
+                        android:id="@+id/edt_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/city_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/city_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_city"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_pinCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/pinCode"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_pinCode"
+                        app:layout_constraintTop_toBottomOf="@id/edt_city" />
+
+                    <EditText
+                        android:id="@+id/edt_pinCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_border"
+                        android:ems="10"
+                        android:hint="@string/pincode_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toStartOf="@id/edt_city"
+                        app:layout_constraintTop_toBottomOf="@id/tv_pinCode"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_mobile"
+                        app:layout_constraintTop_toBottomOf="@id/edt_pinCode" />
+
+                    <ImageView
+                        android:id="@+id/mobile_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/phone_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_mobile"
+                        app:layout_constraintEnd_toStartOf="@id/edt_mobile"
+                        app:layout_constraintTop_toTopOf="@id/tv_mobile" />
+
+                    <EditText
+                        android:id="@+id/edt_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_border"
+                        android:ems="10"
+                        android:hint="@string/mobile_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toStartOf="@id/edt_pinCode"
+                        app:layout_constraintTop_toBottomOf="@id/tv_mobile"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/email"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_email"
+                        app:layout_constraintTop_toBottomOf="@id/edt_mobile" />
+
+                    <ImageView
+                        android:id="@+id/email_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/email_icon"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_email"
+                        app:layout_constraintEnd_toStartOf="@id/edt_email"
+                        app:layout_constraintTop_toTopOf="@id/tv_email" />
+
+                    <EditText
+                        android:id="@+id/edt_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@."
+                        android:ems="10"
+                        android:hint="@string/email_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toStartOf="@id/edt_mobile"
+                        app:layout_constraintTop_toBottomOf="@id/tv_email"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_noOfRooms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/no_of_rooms"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_noOfRooms"
+                        app:layout_constraintTop_toBottomOf="@id/edt_email" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/village"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_noOfRooms"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_noOfRooms" />
+
+                    <Spinner
+                        android:id="@+id/edt_noOfRooms"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@id/edt_email"
+                        app:layout_constraintTop_toBottomOf="@id/tv_noOfRooms"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_sourceOfIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/source"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_sourceOfIncome"
+                        app:layout_constraintTop_toBottomOf="@id/edt_noOfRooms" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/income"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_sourceOfIncome"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_sourceOfIncome" />
+
+                    <Spinner
+                        android:id="@+id/edt_sourceOfIncome"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@id/edt_noOfRooms"
+                        app:layout_constraintTop_toBottomOf="@id/tv_sourceOfIncome"
+                        tools:ignore="LabelFor" />
+
+
+                    <LinearLayout
+                        android:id="@+id/rg_waterSupply"
+                        android:layout_width="294dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_waterSupply">
+
+                        <CheckBox
+                            android:id="@+id/rb_handPump"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/handpump" />
+
+                        <CheckBox
+                            android:id="@+id/rb_boring"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/boring" />
+
+                        <CheckBox
+                            android:id="@+id/rb_well"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/well" />
+
+                        <CheckBox
+                            android:id="@+id/rb_tubewel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tubewel" />
+
+                        <CheckBox
+                            android:id="@+id/rb_corpLine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/corpn_line" />
+
+                        <CheckBox
+                            android:id="@+id/rb_river"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/river" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_waterSupply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/water"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/rg_waterSupply"
+                        app:layout_constraintTop_toBottomOf="@id/edt_sourceOfIncome"
+                        tools:ignore="TooManyViews" />
+
+                    <LinearLayout
+                        android:id="@+id/rg_houseBuilding"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="@id/rg_waterSupply"
+                        app:layout_constraintStart_toStartOf="@id/rg_waterSupply"
+                        app:layout_constraintTop_toBottomOf="@id/tv_houseBuilding">
+
+                        <CheckBox
+                            android:id="@+id/rb_hut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hut" />
+
+                        <CheckBox
+                            android:id="@+id/rb_roof"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/roof" />
+
+                        <CheckBox
+                            android:id="@+id/rb_rent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rent" />
+
+                        <CheckBox
+                            android:id="@+id/rb_general"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/general" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_houseBuilding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/house"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/rg_houseBuilding"
+                        app:layout_constraintTop_toBottomOf="@id/rg_waterSupply" />
+
+                    <LinearLayout
+                        android:id="@+id/rg_useElectricity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="@id/rg_houseBuilding"
+                        app:layout_constraintStart_toStartOf="@id/rg_houseBuilding"
+                        app:layout_constraintTop_toBottomOf="@id/tv_useElectricity">
+
+                        <CheckBox
+                            android:id="@+id/rb_solar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/solar" />
+
+                        <CheckBox
+                            android:id="@+id/rb_electricity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rb_electricity" />
+
+                        <CheckBox
+                            android:id="@+id/rb_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/others" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_useElectricity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/electricity"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/rg_useElectricity"
+                        app:layout_constraintTop_toBottomOf="@id/rg_houseBuilding" />
+
+                    <LinearLayout
+                        android:id="@+id/rg_electronicItem"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="@id/rg_useElectricity"
+                        app:layout_constraintStart_toStartOf="@id/rg_useElectricity"
+                        app:layout_constraintTop_toBottomOf="@id/tv_electronicItem">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_fan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/fan" />
+
+                            <EditText
+                                android:id="@+id/edt_fan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_bulb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bulb" />
+
+                            <EditText
+                                android:id="@+id/edt_bulb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_ac"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/a_c" />
+
+                            <EditText
+                                android:id="@+id/edt_ac"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tv" />
+
+                            <EditText
+                                android:id="@+id/edt_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_refrigerator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/refrigerator" />
+
+                            <EditText
+                                android:id="@+id/edt_refrigerator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_motorPump"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/motor_pump" />
+
+                            <EditText
+                                android:id="@+id/edt_motorPump"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_electricIron"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/electric_iron" />
+
+                            <EditText
+                                android:id="@+id/edt_electronicIron"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_mixture"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mixture" />
+
+                            <EditText
+                                android:id="@+id/edt_mixture"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_electronicItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/electronic_item"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/rg_electronicItem"
+                        app:layout_constraintTop_toBottomOf="@id/rg_useElectricity" />
+
+                    <LinearLayout
+                        android:id="@+id/rg_vehicle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="@id/rg_electronicItem"
+                        app:layout_constraintStart_toStartOf="@id/rg_electronicItem"
+                        app:layout_constraintTop_toBottomOf="@id/tv_vehicle">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_bicycle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bicycle" />
+
+                            <EditText
+                                android:id="@+id/edt_bicycle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_motorCycle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/motor_cycle" />
+
+                            <EditText
+                                android:id="@+id/edt_motorCycle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_motorCar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/motor_car" />
+
+                            <EditText
+                                android:id="@+id/edt_motorCar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_tempo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tempo" />
+
+                            <EditText
+                                android:id="@+id/edt_tempo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_rikshaw"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rikshaw" />
+
+                            <EditText
+                                android:id="@+id/edt_rikshaw"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_truck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/truck" />
+
+                            <EditText
+                                android:id="@+id/edt_truck"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_bus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bus" />
+
+                            <EditText
+                                android:id="@+id/edt_bus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:digits="1234567890"
+                                android:ems="2"
+                                android:importantForAutofill="no"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                tools:ignore="LabelFor" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_vehicle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/vehicle"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/rg_vehicle"
+                        app:layout_constraintTop_toBottomOf="@id/rg_electronicItem" />
+
+                    <TextView
+                        android:id="@+id/tv_bankDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/bank"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rg_vehicle" />
+
+                    <TextView
+                        android:id="@+id/tv_bankName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/bank_name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_bankName"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bankDetails" />
+
+                    <ImageView
+                        android:id="@+id/bank_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/bank"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_bankName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_bankName" />
+
+                    <EditText
+                        android:id="@+id/edt_bankName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/bank_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/bank_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bankName"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:id="@+id/tv_branch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/branch"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="@id/edt_branch"
+                        app:layout_constraintTop_toBottomOf="@id/edt_bankName" />
+
+                    <ImageView
+                        android:id="@+id/branch_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/bank"
+                        app:layout_constraintBottom_toBottomOf="@id/edt_branch"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_branch" />
+
+                    <EditText
+                        android:id="@+id/edt_branch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/field_border"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:ems="10"
+                        android:hint="@string/branch_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        app:layout_constraintStart_toEndOf="@id/branch_icon"
+                        app:layout_constraintTop_toBottomOf="@id/tv_branch"
+                        tools:ignore="LabelFor" />
+
+                    <Button
+                        android:id="@+id/btn_sendOtp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/button_border"
+                        android:layout_marginBottom="50dp"
+                        android:text="@string/send_otp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edt_branch" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/verify_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/edt_verifyOtp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/customer_field_border"
+                        android:ems="10"
+                        android:hint="@string/enter_otp"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/edt_verifyOtp"
+                        app:layout_constraintStart_toStartOf="@id/edt_verifyOtp"
+                        app:layout_constraintTop_toBottomOf="@id/edt_verifyOtp">
+
+                        <Button
+                            android:id="@+id/btn_goBack"
+                            style="?android:buttonBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_border"
+                            android:onClick="goBack"
+                            android:text="@string/go_back" />
+
+                        <Button
+                            android:id="@+id/btn_verifyOtp"
+                            style="?android:buttonBarButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_border"
+                            android:onClick="verifyOtp"
+                            android:text="@string/verify_otp" />
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,154 @@
+<resources>
+    <string name="app_name">DSI</string>
+    <string name="welcome">Welcome Back!</string>
+    <string name="welcome_desc">Login as an Employee</string>
+    <string name="email">E-Mail</string>
+    <string name="password">Password</string>
+    <string name="login">LOG IN</string>
+    <string name="account">Not an Employee to DSI?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="lets_start">Employee Registration</string>
+    <string name="lets_startDesc">Create an account as an Employee</string>
+    <string name="username">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_pass">Confirm Password</string>
+    <string name="already">Already a Employee to DSI?</string>
+    <string name="login_here">Login Here</string>
+    <string name="logout">Logout</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="new_registration">New Registration</string>
+    <string name="last_reg">Last 3 Registrations</string>
+    <string name="user_reg">CUSTOMER REGISTRATION</string>
+    <string name="user_reg_desc">Fill all the  necessary details</string>
+    <string name="gen_details">General Details</string>
+    <string name="name">Name</string>
+    <string name="father_name">Father\'s Name</string>
+    <string name="mother_name">Mother\'s Name</string>
+    <string name="father_occ">Father\'s Occupation</string>
+    <string name="dob">Date of Birth</string>
+    <string name="pan_no">PAN No</string>
+    <string name="aadhaar_no">Aadhaar No</string>
+    <string name="voter_card">Voter Card No</string>
+    <string name="ration_card">Ration Card No</string>
+    <string name="nationality">Nationality</string>
+    <string name="religion">Religion</string>
+    <string name="caste">Caste</string>
+    <string name="address_details">Address Details</string>
+    <string name="village">Village</string>
+    <string name="post_off">Post Office</string>
+    <string name="police_st">Police Station</string>
+    <string name="dist">District</string>
+    <string name="city">City</string>
+    <string name="pinCode">Pin Code</string>
+    <string name="no_of_rooms">No of Rooms</string>
+    <string name="source">Source of Income</string>
+    <string name="water">Water Supply</string>
+    <string name="house">House Building</string>
+    <string name="electricity">Use Electricity</string>
+    <string name="electronic_item">Electronic Item</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="bank">Bank Details</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="branch">Branch</string>
+    <string name="submit">Submit</string>
+    <string name="handpump">Handpump</string>
+    <string name="boring">Boring</string>
+    <string name="well">Well</string>
+    <string name="tubewel">Tubewel</string>
+    <string name="corpn_line">Corpn. Line</string>
+    <string name="river">River</string>
+    <string name="hut">Hut</string>
+    <string name="roof">Roof</string>
+    <string name="rent">Rent</string>
+    <string name="general">General</string>
+    <string name="solar">Solar</string>
+    <string name="rb_electricity">Electricity</string>
+    <string name="others">Others</string>
+    <string name="fan">Fan</string>
+    <string name="bulb">Bulb</string>
+    <string name="a_c">A.C.</string>
+    <string name="tv">TV</string>
+    <string name="refrigerator">Refrigerator</string>
+    <string name="motor_pump">Motor Pump</string>
+    <string name="electric_iron">Electric Iron</string>
+    <string name="mixture">Mixture</string>
+    <string name="bus">Bus</string>
+    <string name="truck">Truck</string>
+    <string name="rikshaw">Rikshaw</string>
+    <string name="tempo">Tempo</string>
+    <string name="motor_car">Motor Car</string>
+    <string name="motor_cycle">Motor Cycle</string>
+    <string name="bicycle">Bicycle</string>
+    <string name="registered_candidates">All Registered Candidates</string>
+    <string name="aadhaar_number">Aadhaar Number:</string>
+    <string name="voter_number">Voter Number:</string>
+    <string name="ration_number">Ration Number:</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="image">Image</string>
+    <string name="name_hint">Enter your Full Name Here</string>
+    <string name="father_name_hint">Your Father\'s Name</string>
+    <string name="mother_name_hint">Your Mother\'s Name</string>
+    <string name="occupation_hint">Your Father\'s Occupation</string>
+    <string name="dob_hint">Select Date of Birth</string>
+    <string name="pan_hint">Enter your PAN Number</string>
+    <string name="aadhaar_hint">Enter your Aadhaar Number</string>
+    <string name="voter_hint">Enter your VOTER Number</string>
+    <string name="post_hint">Where is your Post Office</string>
+    <string name="village_hint">Your Village Name</string>
+    <string name="ration_hint">Your Ration Card Number</string>
+    <string name="nationality_hint">Your Nationality</string>
+    <string name="religion_hint">Enter your Religion</string>
+    <string name="caste_hint">Enter your Caste</string>
+    <string name="police_hint">Enter your Police Station</string>
+    <string name="district_hint">Enter your District</string>
+    <string name="city_hint">Enter your City</string>
+    <string name="pincode_hint">Enter your PINCODE</string>
+    <string name="mobile_hint">Enter your Mobile Number</string>
+    <string name="email_hint">abcdef@domainname.com</string>
+    <string name="branch_hint">Enter your Branch Name</string>
+    <string name="bank_hint">Enter your Bank Name</string>
+    <string name="block_hint">Enter 9 digit Block Coordinator ID</string>
+    <string name="check">Check</string>
+    <string name="house_number">House Number</string>
+    <string name="house_number_hint">Enter your house Number</string>
+    <string name="street_number">Street Number</string>
+    <string name="street_number_hint">Enter your Street Number</string>
+    <string name="block_number">Block</string>
+    <string name="block_number_hint">Enter your Block</string>
+    <string name="near_by_landmark">Near by Landmark</string>
+    <string name="landmark_hint">Enter your near by landmark</string>
+    <string name="view_profile">View Profile</string>
+    <string name="go_back">Go Back</string>
+    <string name="apply">Apply for digital card</string>
+    <string name="gender">GENDER:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="full_address">Address</string>
+    <string name="pay">PAY</string>
+
+    <string-array name="source_of_income">
+        <item>Select Source of Income</item>
+        <item>Farmer</item>
+        <item>Businessman</item>
+        <item>Shopkeeper</item>
+        <item>Government Servant</item>
+        <item>Private Job</item>
+        <item>Daily Wage Worker</item>
+    </string-array>
+
+    <string-array name="no_of_rooms">
+        <item>Select Number of Rooms</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>More than 9</item>
+    </string-array>
+</resources>
