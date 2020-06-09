@@ -1,9 +1,13 @@
 package com.application.dsi;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,14 +15,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dsi.dataClass.Employee;
 import com.application.dsi.dataClass.RequestCall;
 import com.application.dsi.databinding.ActivityUserDashboardBinding;
 import com.application.dsi.viewModels.dataViewModel;
@@ -29,8 +37,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
+import static com.application.dsi.common.Constants.DB;
 import static com.application.dsi.common.Constants.SR;
 
 public class userDashboardActivity extends AppCompatActivity {
@@ -38,12 +49,38 @@ public class userDashboardActivity extends AppCompatActivity {
     ActivityUserDashboardBinding binding;
     dataViewModel viewModel;
     FirebaseUser user;
+    LocationManager locationManager;
+    LocationListener locationListener;
+    Employee employee = new Employee();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_dashboard);
         viewModel = new ViewModelProvider(this).get(dataViewModel.class);
+
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                saveLocationToDataBase(location);
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+                //When User Disable or Enable the Location Permission
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+                //When Enabled
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+                //When Disabled
+            }
+        };
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         SR.child("Profile Picture").child("Employees").child(Objects.requireNonNull(user).getUid()).getDownloadUrl()
@@ -59,7 +96,6 @@ public class userDashboardActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        e.printStackTrace();
                         binding.profilePicture.setImageResource(R.drawable.profile_picture);
                     }
                 });
@@ -82,7 +118,8 @@ public class userDashboardActivity extends AppCompatActivity {
                     binding.dashboardProgressBar.setVisibility(View.GONE);
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     binding.dashboardBackground.setAlpha(1);
-                    binding.setEmployee(requestCall.getEmployee());
+                    employee = requestCall.getEmployee();
+                    updateUi(employee);
                 }
             }
         });
@@ -111,14 +148,41 @@ public class userDashboardActivity extends AppCompatActivity {
         });
     }
 
+    public void updateUi(Employee employee) {
+        binding.setEmployee(employee);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 2);
+        } else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if (location != null) {
+                saveLocationToDataBase(location);
+            }
+        }
+    }
+
+    private void saveLocationToDataBase(Location location) {
+        Map<String, Object> employeeLocation = new HashMap<>();
+
+        employeeLocation.put("latitude", String.valueOf(location.getLatitude()));
+        employeeLocation.put("longitude", String.valueOf(location.getLongitude()));
+        employeeLocation.put("userId", employee.getUserId());
+        employeeLocation.put("post", employee.getPost());
+        employeeLocation.put("name", employee.getName());
+
+        DB.child("Location").child(employee.getUserId()).updateChildren(employeeLocation);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == 1) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getPhoto();
-            }
+        if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            getPhoto();
+        }
+        if (requestCode == 2 && grantResults.length > 0 && grantResults[1] == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
     }
 
@@ -143,10 +207,10 @@ public class userDashboardActivity extends AppCompatActivity {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] photoData = stream.toByteArray();
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                user = FirebaseAuth.getInstance().getCurrentUser();
                 SR.child("Profile Picture").child("Employees").child(Objects.requireNonNull(user).getUid()).putBytes(photoData);
             } catch (Exception e) {
-                e.printStackTrace();
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             }
         } else {
             binding.profilePicture.setImageResource(R.drawable.profile_picture);

@@ -48,8 +48,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     Random rand = new Random();
     int OTP;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    PendingIntent sendPi, deliveredPi;
-    BroadcastReceiver smsSendReceiver, smsDeliveredReceiver;
+    PendingIntent sendPi;
+    PendingIntent deliveredPi;
+    BroadcastReceiver smsSendReceiver;
+    BroadcastReceiver smsDeliveredReceiver;
     String SEND = "SMS_SENT";
     String DELIVERED = "SMS_DELIVERED";
 
@@ -102,14 +104,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                String Day = String.valueOf(day), Month = String.valueOf(month);
+                String dayInner = String.valueOf(day);
+                String monthInner = String.valueOf(month);
                 if (day < 10) {
-                    Day = "0" + day;
+                    dayInner = "0" + day;
                 }
                 if ((month + 1) < 10) {
-                    Month = "0" + month;
+                    monthInner = "0" + month;
                 }
-                binding.edtDob.setText(new StringBuilder().append(Day).append("/").append(Integer.parseInt(Month) + 1).append("/").append(year));
+                binding.edtDob.setText(new StringBuilder().append(dayInner).append("/").append(Integer.parseInt(monthInner) + 1).append("/").append(year));
             }
         };
     }
@@ -168,7 +171,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         smsDeliveredReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
+                if (getResultCode() == Activity.RESULT_OK) {
+                    Toast.makeText(SignUpActivity.this, "OTP Send", Toast.LENGTH_SHORT).show();
+                }
             }
         };
 
@@ -345,7 +350,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void registerEmployee(Employee employee) {
-        DB.child("Employee").child(employee.getEmployeeId()).setValue(employee).addOnSuccessListener(new OnSuccessListener<Void>() {
+        DB.child("Employee").child(employee.getUserId()).setValue(employee).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 SmsManager sms = SmsManager.getDefault();
