@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SignUpActivity">
+        tools:context=".ui.SignUpActivity">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -19,6 +19,45 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/verify_block_background_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:id="@+id/edt_block_coordinator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/field_border"
+                        android:hint="@string/block_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/check_coordinator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="50dp"
+                        android:text="@string/check"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edt_block_coordinator" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/signUp_background_layout"
@@ -88,7 +127,7 @@
                         android:ems="10"
                         android:hint="@string/name_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@+id/name_Icon"
@@ -128,7 +167,7 @@
                         android:ems="10"
                         android:hint="@string/father_name_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/father_icon"
@@ -168,7 +207,7 @@
                         android:ems="10"
                         android:hint="@string/mother_name_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/mother_icon"
@@ -288,7 +327,7 @@
                         android:ems="10"
                         android:hint="@string/pan_hint"
                         android:importantForAutofill="no"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
                         android:maxLength="10"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
@@ -371,7 +410,7 @@
                         android:ems="10"
                         android:hint="@string/voter_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapCharacters"
                         android:maxLength="12"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
@@ -453,7 +492,7 @@
                         android:ems="10"
                         android:hint="@string/nationality_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/nationality_icon"
@@ -571,7 +610,7 @@
                         android:ems="10"
                         android:hint="@string/block_number_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapCharacters"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/block_icon"
@@ -611,7 +650,7 @@
                         android:ems="10"
                         android:hint="@string/landmark_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/landmark_icon"
@@ -651,7 +690,7 @@
                         android:ems="10"
                         android:hint="@string/village_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/village_icon"
@@ -691,7 +730,7 @@
                         android:ems="10"
                         android:hint="@string/post_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/post_icon"
@@ -732,7 +771,7 @@
                         android:ems="10"
                         android:hint="@string/police_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/police_icon"
@@ -772,7 +811,7 @@
                         android:ems="10"
                         android:hint="@string/district_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/district_icon"
@@ -812,7 +851,7 @@
                         android:ems="10"
                         android:hint="@string/city_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/city_icon"
@@ -971,7 +1010,7 @@
                         android:ems="10"
                         android:hint="@string/bank_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/bank_icon"
@@ -1011,7 +1050,7 @@
                         android:ems="10"
                         android:hint="@string/branch_hint"
                         android:importantForAutofill="no"
-                        android:inputType="textPersonName"
+                        android:inputType="textCapSentences"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         app:layout_constraintStart_toEndOf="@id/branch_icon"
@@ -1114,45 +1153,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/verify_block_background_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <EditText
-                        android:id="@+id/edt_block_coordinator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="100dp"
-                        android:background="@drawable/field_border"
-                        android:hint="@string/block_hint"
-                        android:importantForAutofill="no"
-                        android:inputType="textPersonName"
-                        android:textAlignment="center"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
-                        android:id="@+id/check_coordinator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginBottom="50dp"
-                        android:text="@string/check"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/edt_block_coordinator" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/verify_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -1196,7 +1196,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_border"
-                            android:onClick="goBack"
                             android:text="@string/go_back" />
 
                         <Button
@@ -1205,7 +1204,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_border"
-                            android:onClick="verifyOtp"
                             android:text="@string/verify_otp" />
 
                     </LinearLayout>

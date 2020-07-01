@@ -31,8 +31,26 @@ public class Customer implements Serializable {
     private String bankBranch;
     private String customerId;
     private String navPanchayatId;
-    private ArrayList<String> waterSupply, houseBuilding, useElectricity, electronicItems, vehicle;
-    private String noOfFan, noOfBulb, noOfAc, noOfTv, noOfRefrigerator, noOfMotorPump, noOfElectricIron, noOfMixture, noOfBicycle, noOfMotorCycle, noOfMotorCar, noOfTempo, noOfRikshaw, noOfTruck, noOfBus;
+    private ArrayList<String> waterSupply;
+    private ArrayList<String> houseBuilding;
+    private ArrayList<String> useElectricity;
+    private ArrayList<String> electronicItems;
+    private ArrayList<String> vehicle;
+    private String noOfFan;
+    private String noOfBulb;
+    private String noOfAc;
+    private String noOfTv;
+    private String noOfRefrigerator;
+    private String noOfMotorPump;
+    private String noOfElectricIron;
+    private String noOfMixture;
+    private String noOfBicycle;
+    private String noOfMotorCycle;
+    private String noOfMotorCar;
+    private String noOfTempo;
+    private String noOfRikshaw;
+    private String noOfTruck;
+    private String noOfBus;
 
     public Customer() {
     }
@@ -169,16 +187,16 @@ public class Customer implements Serializable {
         return customerId;
     }
 
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
     public String getNavPanchayatId() {
         return navPanchayatId;
     }
 
     public void setNavPanchayatId(String navPanchayatId) {
         this.navPanchayatId = navPanchayatId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
     }
 
     public String getName() {

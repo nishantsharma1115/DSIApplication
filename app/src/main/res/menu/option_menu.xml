@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/products"
+        android:title="@string/products" />
+    <item
+        android:id="@+id/contact_us"
+        android:title="@string/contact_us" />
+    <item
+        android:id="@+id/about_us"
+        android:title="@string/about_us" />
+    <item
         android:id="@+id/logoutUser"
-        android:title="@string/logout"/>
+        android:title="@string/logout" />
 </menu>

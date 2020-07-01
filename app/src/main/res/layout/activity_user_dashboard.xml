@@ -9,13 +9,17 @@
             name="employee"
             type="com.application.dsi.dataClass.Employee" />
 
+        <variable
+            name="customer"
+            type="com.application.dsi.dataClass.Customer" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        tools:context=".userDashboardActivity">
+        tools:context=".ui.UserDashboardActivity">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -23,9 +27,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/dashboardBackground"
-                android:background="@drawable/background"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/background">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profilePicture"
@@ -90,21 +94,21 @@
                     android:id="@+id/userProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/button_border"
                     android:text="@string/view_profile"
-                    app:layout_constraintTop_toBottomOf="@id/tv_phone"
-                    app:layout_constraintStart_toStartOf="@id/tv_phone"
                     app:layout_constraintEnd_toEndOf="@id/tv_phone"
-                    android:layout_marginTop="20dp"/>
+                    app:layout_constraintStart_toStartOf="@id/tv_phone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phone" />
 
                 <Button
                     android:id="@+id/btn_newReg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/new_reg_bg"
                     android:drawableStart="@drawable/person_add"
                     android:drawablePadding="10dp"
-                    android:layout_marginTop="30dp"
                     android:paddingStart="40dp"
                     android:paddingEnd="40dp"
                     android:text="@string/new_registration"
@@ -126,6 +130,85 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_newReg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/customerDashboardBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background"
+                android:visibility="gone">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilePictureCustomer"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="80dp"
+                    android:src="@drawable/profile_picture"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_editProfilePictureCustomer"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/edit_profile_picture"
+                    app:layout_constraintBottom_toBottomOf="@+id/profilePictureCustomer"
+                    app:layout_constraintEnd_toEndOf="@+id/profilePictureCustomer" />
+
+                <TextView
+                    android:id="@+id/tv_nameCustomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{customer.name}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profilePictureCustomer" />
+
+                <TextView
+                    android:id="@+id/tv_emailCustomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@{customer.email}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nameCustomer" />
+
+                <TextView
+                    android:id="@+id/tv_phoneCustomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/phone_icon"
+                    android:drawablePadding="10dp"
+                    android:text="@{customer.mobile}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_emailCustomer"
+                    app:layout_constraintStart_toStartOf="@+id/tv_emailCustomer"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_emailCustomer" />
+
+                <Button
+                    android:id="@+id/userProfileCustomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_border"
+                    android:text="@string/view_profile"
+                    app:layout_constraintEnd_toEndOf="@id/tv_phoneCustomer"
+                    app:layout_constraintStart_toStartOf="@id/tv_phoneCustomer"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phoneCustomer" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

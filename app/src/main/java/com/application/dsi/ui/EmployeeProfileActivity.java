@@ -1,4 +1,4 @@
-package com.application.dsi;
+package com.application.dsi.ui;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,9 +11,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dsi.R;
 import com.application.dsi.dataClass.RequestCall;
 import com.application.dsi.databinding.ActivityEmployeeProfileBinding;
-import com.application.dsi.viewModels.dataViewModel;
+import com.application.dsi.view_models.DataViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,17 +25,17 @@ import java.util.Objects;
 
 import static com.application.dsi.common.Constants.SR;
 
-public class employeeProfileActivity extends AppCompatActivity {
+public class EmployeeProfileActivity extends AppCompatActivity {
 
     ActivityEmployeeProfileBinding binding;
-    dataViewModel viewModel;
+    DataViewModel viewModel;
     FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_employee_profile);
-        viewModel = new ViewModelProvider(this).get(dataViewModel.class);
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         SR.child("Profile Picture").child("Employees").child(Objects.requireNonNull(user).getUid()).getDownloadUrl()
@@ -66,7 +67,7 @@ public class employeeProfileActivity extends AppCompatActivity {
                     binding.progressBar.setVisibility(View.GONE);
                     binding.background.setAlpha(1);
                 } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("No data Found")) {
-                    Toast.makeText(employeeProfileActivity.this, "Error while fetching data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EmployeeProfileActivity.this, "Error while fetching data", Toast.LENGTH_SHORT).show();
                     finish();
                 } else if (requestCall.getStatus() == -1) {
                     finish();

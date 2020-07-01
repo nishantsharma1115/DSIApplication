@@ -127,6 +127,12 @@
     <string name="female">Female</string>
     <string name="full_address">Address</string>
     <string name="pay">PAY</string>
+    <string name="register_as_customer">Register as Customer</string>
+    <string name="enter_9_digit_employee_id">Enter 9 digit Employee ID</string>
+    <string name="employee_id">Employee ID:</string>
+    <string name="products">Products</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="about_us">About us</string>
 
     <string-array name="source_of_income">
         <item>Select Source of Income</item>

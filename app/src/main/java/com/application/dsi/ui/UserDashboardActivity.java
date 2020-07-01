@@ -1,4 +1,4 @@
-package com.application.dsi;
+package com.application.dsi.ui;
 
 import android.Manifest;
 import android.content.Context;
@@ -26,10 +26,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dsi.R;
+import com.application.dsi.dataClass.Customer;
 import com.application.dsi.dataClass.Employee;
 import com.application.dsi.dataClass.RequestCall;
 import com.application.dsi.databinding.ActivityUserDashboardBinding;
-import com.application.dsi.viewModels.dataViewModel;
+import com.application.dsi.view_models.DataViewModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,20 +46,21 @@ import java.util.Objects;
 import static com.application.dsi.common.Constants.DB;
 import static com.application.dsi.common.Constants.SR;
 
-public class userDashboardActivity extends AppCompatActivity {
+public class UserDashboardActivity extends AppCompatActivity {
 
     ActivityUserDashboardBinding binding;
-    dataViewModel viewModel;
+    DataViewModel viewModel;
     FirebaseUser user;
     LocationManager locationManager;
     LocationListener locationListener;
     Employee employee = new Employee();
+    Customer customer = new Customer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_dashboard);
-        viewModel = new ViewModelProvider(this).get(dataViewModel.class);
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
@@ -103,7 +106,7 @@ public class userDashboardActivity extends AppCompatActivity {
         binding.userProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(userDashboardActivity.this, employeeProfileActivity.class));
+                startActivity(new Intent(UserDashboardActivity.this, EmployeeProfileActivity.class));
             }
         });
 
@@ -118,8 +121,17 @@ public class userDashboardActivity extends AppCompatActivity {
                     binding.dashboardProgressBar.setVisibility(View.GONE);
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     binding.dashboardBackground.setAlpha(1);
-                    employee = requestCall.getEmployee();
-                    updateUi(employee);
+                    if (requestCall.getUserPost().equals("Customer")) {
+                        binding.dashboardBackground.setVisibility(View.GONE);
+                        binding.customerDashboardBackground.setVisibility(View.VISIBLE);
+                        customer = requestCall.getCustomer();
+                        updateUiCustomer(customer);
+                    } else if (requestCall.getUserPost().equals("Nav Panchayat")) {
+                        binding.customerDashboardBackground.setVisibility(View.GONE);
+                        binding.dashboardBackground.setVisibility(View.VISIBLE);
+                        employee = requestCall.getEmployee();
+                        updateUi(employee);
+                    }
                 }
             }
         });
@@ -127,13 +139,13 @@ public class userDashboardActivity extends AppCompatActivity {
         binding.btnNewReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(userDashboardActivity.this, customerRegistrationActivity.class));
+                startActivity(new Intent(UserDashboardActivity.this, CustomerRegistrationActivity.class));
             }
         });
         binding.btnViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(userDashboardActivity.this, customerListActivity.class));
+                startActivity(new Intent(UserDashboardActivity.this, CustomerListActivity.class));
             }
         });
         binding.imgEditProfilePicture.setOnClickListener(new View.OnClickListener() {
@@ -148,8 +160,8 @@ public class userDashboardActivity extends AppCompatActivity {
         });
     }
 
-    public void updateUi(Employee employee) {
-        binding.setEmployee(employee);
+    public void updateUi(Employee employeeData) {
+        binding.setEmployee(employeeData);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 2);
         } else {
@@ -160,6 +172,10 @@ public class userDashboardActivity extends AppCompatActivity {
                 saveLocationToDataBase(location);
             }
         }
+    }
+
+    private void updateUiCustomer(Customer customer) {
+        binding.setCustomer(customer);
     }
 
     private void saveLocationToDataBase(Location location) {
@@ -225,12 +241,25 @@ public class userDashboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.logoutUser) {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(this, loginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+        switch (item.getItemId()) {
+            case R.id.logoutUser:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.products:
+                startActivity(new Intent(this, ProductActivity.class));
+                break;
+            case R.id.about_us:
+                startActivity(new Intent(this, AboutUsActivity.class));
+                break;
+            case R.id.contact_us:
+                startActivity(new Intent(this, ContactUsActivity.class));
+                break;
+            default:
+                break;
         }
         return true;
     }

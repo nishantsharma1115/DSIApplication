@@ -1,4 +1,4 @@
-package com.application.dsi;
+package com.application.dsi.ui;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,6 +18,7 @@ import android.telephony.SmsManager;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,13 +33,14 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dsi.R;
 import com.application.dsi.common.Constants;
 import com.application.dsi.dataClass.Customer;
 import com.application.dsi.dataClass.Employee;
 import com.application.dsi.dataClass.RequestCall;
 import com.application.dsi.databinding.ActivityCustomerRegistrationBinding;
-import com.application.dsi.viewModels.dataViewModel;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.application.dsi.view_models.AuthViewModel;
+import com.application.dsi.view_models.DataViewModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.ByteArrayOutputStream;
@@ -49,29 +51,35 @@ import java.util.Random;
 import static com.application.dsi.common.Constants.DB;
 import static com.application.dsi.common.Constants.SR;
 
-public class customerRegistrationActivity extends AppCompatActivity implements View.OnClickListener {
+public class CustomerRegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityCustomerRegistrationBinding binding;
     Customer customer;
     String customerId;
     Boolean isCustomerSet = false;
-    String phoneNumber, no_of_rooms, source_of_income;
+    String phoneNumber;
+    String noOfRooms;
+    String sourceOfIncome;
     Random rand = new Random();
-    int OTP;
+    int otp;
     boolean isPhotoSelected = false;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
-    PendingIntent sendPi, deliveredPi;
-    BroadcastReceiver smsSendReceiver, smsDeliveredReceiver;
-    String SEND = "SMS_SENT";
-    String DELIVERED = "SMS_DELIVERED";
-    dataViewModel viewModel;
+    PendingIntent sendPi;
+    PendingIntent deliveredPi;
+    BroadcastReceiver smsSendReceiver;
+    BroadcastReceiver smsDeliveredReceiver;
+    String smsSent = "SMS_SENT";
+    String smsDelivered = "SMS_DELIVERED";
+    DataViewModel viewModel;
     Employee employee = new Employee();
+    AuthViewModel authViewModel;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_customer_registration);
-        viewModel = new ViewModelProvider(this).get(dataViewModel.class);
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
 
         customer = new Customer();
         customerId = String.valueOf(new Random().nextInt(899999999) + 100000000);
@@ -93,38 +101,37 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
                     binding.customerRegistrationLayout.setAlpha(1);
                     binding.verifyLayout.setAlpha(1);
                     employee = requestCall.getEmployee();
-                } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("No data Found")) {
-                    // Do Something when Customer Directly Register for DSI
+                    binding.edtEmployeeId.setText(employee.getEmployeeId());
                 }
             }
         });
 
-        ArrayAdapter<CharSequence> noOfRooms = ArrayAdapter.createFromResource(this, R.array.no_of_rooms, R.layout.spinner_item);
-        binding.edtNoOfRooms.setAdapter(noOfRooms);
+        ArrayAdapter<CharSequence> noOfRoomsAdapter = ArrayAdapter.createFromResource(this, R.array.no_of_rooms, R.layout.spinner_item);
+        binding.edtNoOfRooms.setAdapter(noOfRoomsAdapter);
 
-        ArrayAdapter<CharSequence> sourceOfIncome = ArrayAdapter.createFromResource(this, R.array.source_of_income, R.layout.spinner_item);
-        binding.edtSourceOfIncome.setAdapter(sourceOfIncome);
+        ArrayAdapter<CharSequence> sourceOfIncomeAdapter = ArrayAdapter.createFromResource(this, R.array.source_of_income, R.layout.spinner_item);
+        binding.edtSourceOfIncome.setAdapter(sourceOfIncomeAdapter);
 
         binding.edtNoOfRooms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                no_of_rooms = adapterView.getItemAtPosition(i).toString();
+                CustomerRegistrationActivity.this.noOfRooms = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(customerRegistrationActivity.this, "Please Select", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerRegistrationActivity.this, "Please Select", Toast.LENGTH_SHORT).show();
             }
         });
         binding.edtSourceOfIncome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                source_of_income = adapterView.getItemAtPosition(i).toString();
+                CustomerRegistrationActivity.this.sourceOfIncome = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(customerRegistrationActivity.this, "Please Select", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerRegistrationActivity.this, "Please Select", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -140,10 +147,8 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == 1) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getPhoto();
-            }
+        if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            getPhoto();
         }
     }
 
@@ -163,7 +168,7 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
                 binding.customerProfilePicture.setImageBitmap(bitmap);
                 isPhotoSelected = true;
             } catch (Exception e) {
-                e.printStackTrace();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         } else {
             binding.customerProfilePicture.setImageResource(R.drawable.profile_picture);
@@ -197,6 +202,10 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
                     R.style.Theme_AppCompat_DayNight_Dialog,
                     mDateSetListener,
                     year, month + 1, day).show();
+        } else if (view.getId() == R.id.btn_verifyOtp) {
+            verifyOtp();
+        } else if (view.getId() == R.id.btn_goBack) {
+            goBack();
         }
     }
 
@@ -208,7 +217,7 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (getResultCode() == Activity.RESULT_OK) {
-                    Toast.makeText(customerRegistrationActivity.this, "OTP Send", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomerRegistrationActivity.this, "OTP Send", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -216,12 +225,14 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
         smsDeliveredReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
+                if (getResultCode() == Activity.RESULT_OK) {
+                    Toast.makeText(CustomerRegistrationActivity.this, "OTP Send", Toast.LENGTH_SHORT).show();
+                }
             }
         };
 
-        registerReceiver(smsSendReceiver, new IntentFilter(SEND));
-        registerReceiver(smsDeliveredReceiver, new IntentFilter(DELIVERED));
+        registerReceiver(smsSendReceiver, new IntentFilter(smsSent));
+        registerReceiver(smsDeliveredReceiver, new IntentFilter(smsDelivered));
     }
 
     @Override
@@ -236,18 +247,18 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
         setCustomer();
 
         if (isCustomerSet) {
-            OTP = rand.nextInt(899999) + 100000;
+            otp = rand.nextInt(899999) + 100000;
             if (binding.edtMobile.getText().toString().startsWith("+91")) {
                 phoneNumber = binding.edtMobile.getText().toString();
             } else {
                 phoneNumber = "+91" + binding.edtMobile.getText().toString();
             }
 
-            sendPi = PendingIntent.getBroadcast(this, 0, new Intent(SEND), 0);
-            deliveredPi = PendingIntent.getBroadcast(this, 0, new Intent(DELIVERED), 0);
+            sendPi = PendingIntent.getBroadcast(this, 0, new Intent(smsSent), 0);
+            deliveredPi = PendingIntent.getBroadcast(this, 0, new Intent(smsDelivered), 0);
 
             SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(binding.edtMobile.getText().toString(), null, OTP + " is your Verification Code", sendPi, deliveredPi);
+            sms.sendTextMessage(phoneNumber, null, otp + " is your Verification Code", sendPi, deliveredPi);
 
             binding.customerRegistrationLayout.setVisibility(View.GONE);
             binding.verifyLayout.setVisibility(View.VISIBLE);
@@ -262,7 +273,10 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
         ArrayList<String> availableElectronicItem = new ArrayList<>();
         ArrayList<String> availableVehicle = new ArrayList<>();
 
-        if (TextUtils.isEmpty(binding.edtName.getText())) {
+        if (binding.edtEmployeeId.getText().toString().isEmpty()) {
+            binding.edtEmployeeId.setError("Required");
+            binding.edtEmployeeId.requestFocus();
+        } else if (TextUtils.isEmpty(binding.edtName.getText())) {
             binding.edtName.setError("Required");
             binding.edtName.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtFatherName.getText())) {
@@ -331,11 +345,11 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
         } else if (TextUtils.isEmpty(binding.edtBranch.getText())) {
             binding.edtBranch.setError("Required");
             binding.edtBranch.requestFocus();
-        } else if (no_of_rooms.equals("Select Number of Rooms")) {
+        } else if (noOfRooms.equals("Select Number of Rooms")) {
             Toast.makeText(this, "Select Number of Rooms", Toast.LENGTH_SHORT).show();
             ((TextView) binding.edtNoOfRooms.getSelectedView()).setError("Select No of Rooms");
             (binding.edtNoOfRooms.getSelectedView()).requestFocus();
-        } else if (source_of_income.equals("Select Source of Income")) {
+        } else if (sourceOfIncome.equals("Select Source of Income")) {
             Toast.makeText(this, "Select Source of Income", Toast.LENGTH_SHORT).show();
             ((TextView) binding.edtSourceOfIncome.getSelectedView()).setError("Required");
             (binding.edtNoOfRooms.getSelectedView()).requestFocus();
@@ -384,11 +398,17 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
         } else if (binding.rbBus.isChecked() && binding.edtBus.getText().toString().isEmpty()) {
             binding.edtBus.setError("Can not be empty");
             binding.edtBus.requestFocus();
+        } else if (binding.edtPassword.getText().toString().isEmpty() && binding.edtConfirmPass.getText().toString().isEmpty()) {
+            binding.edtPassword.setError("Required");
+            binding.edtPassword.requestFocus();
+        } else if (!binding.edtPassword.getText().toString().equals(binding.edtConfirmPass.getText().toString())) {
+            binding.edtConfirmPass.setError("Not Equal to Password");
+            binding.edtConfirmPass.requestFocus();
         } else {
 
             customer.setPost("Customer");
             customer.setCustomerId(customerId);
-            customer.setNavPanchayatId(employee.getEmployeeId());
+            customer.setNavPanchayatId(binding.edtEmployeeId.getText().toString());
             customer.setName(binding.edtName.getText().toString());
             customer.setFatherName(binding.edtFatherName.getText().toString());
             customer.setMotherName(binding.edtMotherName.getText().toString());
@@ -414,8 +434,8 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
             customer.setPinCode(binding.edtPinCode.getText().toString());
             customer.setMobile(binding.edtMobile.getText().toString());
             customer.setEmail(binding.edtEmail.getText().toString());
-            customer.setNoOfRooms(no_of_rooms);
-            customer.setSourceOfIncome(source_of_income);
+            customer.setNoOfRooms(noOfRooms);
+            customer.setSourceOfIncome(sourceOfIncome);
 
             if (binding.rbHandPump.isChecked())
                 availableWaterSupply.add(binding.rbHandPump.getText().toString());
@@ -537,31 +557,42 @@ public class customerRegistrationActivity extends AppCompatActivity implements V
     }
 
     //Side Button of Verify OTP Button
-    public void goBack(View view) {
+    public void goBack() {
         binding.verifyLayout.setVisibility(View.GONE);
         binding.customerRegistrationLayout.setVisibility(View.VISIBLE);
     }
 
-    public void verifyOtp(View view) {
-        if (binding.edtVerifyOtp.getText().toString().equals(String.valueOf(OTP))) {
-            DB.child("Customers").child(customer.getCustomerId()).setValue(customer)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            SmsManager sms = SmsManager.getDefault();
-                            sms.sendTextMessage(binding.edtMobile.getText().toString(), null, "Thanks for Registering for DSI.", sendPi, deliveredPi);
-                            Intent intent = new Intent(customerRegistrationActivity.this, userDashboardActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(customerRegistrationActivity.this, "Processing Failed......", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+    public void verifyOtp() {
+        if (binding.edtVerifyOtp.getText().toString().equals(String.valueOf(otp))) {
+            authViewModel.viewModelSignUpCustomer(customer.getEmail(), binding.edtPassword.getText().toString(), customer).observe(this, new Observer<RequestCall>() {
+                @Override
+                public void onChanged(RequestCall requestCall) {
+                    if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("Finished")) {
+                        registerCustomer(requestCall.getCustomer());
+                        binding.progressBar.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        binding.customerRegistrationLayout.setAlpha(1);
+                    } else if (requestCall.getStatus() == Constants.OPERATION_IN_PROGRESS) {
+                        binding.progressBar.setVisibility(View.VISIBLE);
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        binding.customerRegistrationLayout.setAlpha((float) 0.4);
+                    }
+                }
+            });
         }
+    }
+
+    private void registerCustomer(Customer customer) {
+        DB.child("Employee").child(customer.getCustomerId()).setValue(customer).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(binding.edtMobile.getText().toString(), null, "Thanks for Registering for DSI.", sendPi, deliveredPi);
+                Intent intent = new Intent(CustomerRegistrationActivity.this, UserDashboardActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

@@ -1,16 +1,16 @@
-package com.application.dsi.viewModels;
+package com.application.dsi.view_models;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.application.dsi.Repositories.dataRepository;
+import com.application.dsi.repositories.DataRepository;
 import com.application.dsi.dataClass.RequestCall;
 
-public class dataViewModel extends ViewModel {
-    private final dataRepository datarepository;
+public class DataViewModel extends ViewModel {
+    private final DataRepository datarepository;
 
-    public dataViewModel() {
-        datarepository = new dataRepository();
+    public DataViewModel() {
+        datarepository = new DataRepository();
     }
 
     public MutableLiveData<RequestCall> getEmployee() {
@@ -21,11 +21,11 @@ public class dataViewModel extends ViewModel {
         return datarepository.getCustomerList();
     }
 
-    public MutableLiveData<RequestCall> checkForCoordinator (String id) {
+    public MutableLiveData<RequestCall> checkForCoordinator(String id) {
         return datarepository.checkCoordinator(id);
     }
 
-    public MutableLiveData<RequestCall> getCustomerDetails (String customerId) {
+    public MutableLiveData<RequestCall> getCustomerDetails(String customerId) {
         return datarepository.customerDetails(customerId);
     }
 }

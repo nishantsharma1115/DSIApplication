@@ -14,26 +14,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.ContactUsActivity"></activity>
+        <activity android:name=".ui.AboutUsActivity" />
+        <activity android:name=".ui.ProductActivity" />
         <activity
-            android:name=".applyForDigitalCardActivity"
+            android:name=".ui.ApplyForDigitalCardActivity"
             android:label="Apply For Digital Card"
-            android:parentActivityName=".customerListActivity" />
+            android:parentActivityName=".ui.CustomerListActivity" />
         <activity
-            android:name=".employeeProfileActivity"
+            android:name=".ui.EmployeeProfileActivity"
             android:label="Employee Detail" />
         <activity
-            android:name=".customerListActivity"
+            android:name=".ui.CustomerListActivity"
             android:label="Registered Customers"
-            android:parentActivityName=".userDashboardActivity" />
+            android:parentActivityName=".ui.UserDashboardActivity" />
         <activity
-            android:name=".customerRegistrationActivity"
+            android:name=".ui.CustomerRegistrationActivity"
             android:label="Customer Registration"
-            android:parentActivityName=".userDashboardActivity" />
-        <activity android:name=".userDashboardActivity" />
+            android:parentActivityName=".ui.UserDashboardActivity" />
+        <activity android:name=".ui.UserDashboardActivity" />
         <activity
-            android:name=".SignUpActivity"
-            android:parentActivityName=".loginActivity" />
-        <activity android:name=".loginActivity">
+            android:name=".ui.SignUpActivity"
+            android:parentActivityName=".ui.LoginActivity" />
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

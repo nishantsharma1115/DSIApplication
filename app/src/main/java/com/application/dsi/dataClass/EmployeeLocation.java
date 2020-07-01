@@ -9,6 +9,9 @@ public class EmployeeLocation implements Serializable {
     private String userId;
     private String name;
 
+    public EmployeeLocation() {
+    }
+
     public String getName() {
         return name;
     }
@@ -31,9 +34,6 @@ public class EmployeeLocation implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public EmployeeLocation() {
     }
 
     public String getLatitude() {

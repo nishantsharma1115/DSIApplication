@@ -1,4 +1,4 @@
-package com.application.dsi;
+package com.application.dsi.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,22 +9,23 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dsi.R;
 import com.application.dsi.common.Constants;
 import com.application.dsi.dataClass.Customer;
 import com.application.dsi.dataClass.RequestCall;
 import com.application.dsi.databinding.ActivityApplyForDigitalCardBinding;
-import com.application.dsi.viewModels.dataViewModel;
+import com.application.dsi.view_models.DataViewModel;
 
-public class applyForDigitalCardActivity extends AppCompatActivity {
+public class ApplyForDigitalCardActivity extends AppCompatActivity {
 
     ActivityApplyForDigitalCardBinding binding;
-    dataViewModel viewModel;
+    DataViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_apply_for_digital_card);
-        viewModel = new ViewModelProvider(this).get(dataViewModel.class);
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         viewModel.getCustomerDetails(getIntent().getStringExtra("customerId")).observe(this, new Observer<RequestCall>() {
             @Override
@@ -42,7 +43,7 @@ public class applyForDigitalCardActivity extends AppCompatActivity {
                 } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("No data Found")) {
                     finish();
                 } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_FAILURE) {
-                    Toast.makeText(applyForDigitalCardActivity.this, requestCall.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ApplyForDigitalCardActivity.this, requestCall.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

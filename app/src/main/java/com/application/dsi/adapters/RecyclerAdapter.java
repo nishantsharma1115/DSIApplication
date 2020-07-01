@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.application.dsi.R;
-import com.application.dsi.applyForDigitalCardActivity;
 import com.application.dsi.dataClass.Customer;
+import com.application.dsi.ui.ApplyForDigitalCardActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.squareup.picasso.Picasso;
@@ -70,7 +70,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.applyDigitalCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), applyForDigitalCardActivity.class);
+                Intent intent = new Intent(view.getContext(), ApplyForDigitalCardActivity.class);
                 intent.putExtra("customerId", currentCustomer.getCustomerId());
                 context.startActivity(intent);
             }

@@ -1,4 +1,4 @@
-package com.application.dsi;
+package com.application.dsi.ui;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -19,18 +20,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dsi.R;
 import com.application.dsi.common.Constants;
 import com.application.dsi.dataClass.Employee;
 import com.application.dsi.dataClass.RequestCall;
 import com.application.dsi.databinding.ActivitySignUpBinding;
-import com.application.dsi.viewModels.AuthViewModel;
-import com.application.dsi.viewModels.dataViewModel;
+import com.application.dsi.view_models.AuthViewModel;
+import com.application.dsi.view_models.DataViewModel;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -41,26 +45,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     ActivitySignUpBinding binding;
     AuthViewModel viewModel;
-    dataViewModel dataViewModel;
+    DataViewModel dataViewModel;
     Employee employee;
     boolean isEmployeeSet = false;
     String phoneNumber;
     Random rand = new Random();
-    int OTP;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    int otp;
     PendingIntent sendPi;
     PendingIntent deliveredPi;
     BroadcastReceiver smsSendReceiver;
     BroadcastReceiver smsDeliveredReceiver;
-    String SEND = "SMS_SENT";
-    String DELIVERED = "SMS_DELIVERED";
+    String smsSent = "SMS_SENT";
+    String smsDelivered = "SMS_DELIVERED";
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up);
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-        dataViewModel = new ViewModelProvider(this).get(dataViewModel.class);
+        dataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
         employee = new Employee();
 
         binding.txtLoginHere.setOnClickListener(this);
@@ -126,14 +130,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NotNull View view) {
         if (view.getId() == R.id.signUp_background_layout || view.getId() == R.id.txt_lets || view.getId() == R.id.txt_letsDesc) {
             InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(INPUT_METHOD_SERVICE);
             if (inputMethodManager != null) {
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         } else if (view.getId() == R.id.txt_loginHere) {
-            startActivity(new Intent(SignUpActivity.this, loginActivity.class));
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             finish();
         } else if (view.getId() == R.id.btn_sendOtp) {
             if (checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
@@ -141,7 +145,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             } else {
                 sendOtp();
             }
-        } else if (view.getId() == R.id.img_calender) {
+        } else if (view.getId() == R.id.img_calender || view.getId() == R.id.edt_dob) {
             Calendar cal = Calendar.getInstance();
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
@@ -152,6 +156,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     R.style.Theme_AppCompat_DayNight_Dialog,
                     mDateSetListener,
                     year, month + 1, day).show();
+        } else if (view.getId() == R.id.btn_verifyOtp) {
+            verifyOtp();
+        } else if (view.getId() == R.id.btn_goBack) {
+            goBack();
         }
     }
 
@@ -177,8 +185,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             }
         };
 
-        registerReceiver(smsSendReceiver, new IntentFilter(SEND));
-        registerReceiver(smsDeliveredReceiver, new IntentFilter(DELIVERED));
+        registerReceiver(smsSendReceiver, new IntentFilter(smsSent));
+        registerReceiver(smsDeliveredReceiver, new IntentFilter(smsDelivered));
     }
 
     @Override
@@ -199,12 +207,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 phoneNumber = "+91" + binding.edtMobile.getText().toString();
             }
 
-            sendPi = PendingIntent.getBroadcast(this, 0, new Intent(SEND), 0);
-            deliveredPi = PendingIntent.getBroadcast(this, 0, new Intent(DELIVERED), 0);
+            sendPi = PendingIntent.getBroadcast(this, 0, new Intent(smsSent), 0);
+            deliveredPi = PendingIntent.getBroadcast(this, 0, new Intent(smsDelivered), 0);
 
-            OTP = rand.nextInt(899999) + 100000;
+            otp = rand.nextInt(899999) + 100000;
             SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(binding.edtMobile.getText().toString(), null, OTP + " is your Verification Code", sendPi, deliveredPi);
+            sms.sendTextMessage(phoneNumber, null, otp + " is your Verification Code", sendPi, deliveredPi);
 
             binding.verifyBlockBackgroundLayout.setVisibility(View.GONE);
             binding.signUpBackgroundLayout.setVisibility(View.GONE);
@@ -215,83 +223,84 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setEmployee() {
 
+        final String required = "Required";
+
         if (TextUtils.isEmpty(binding.edtName.getText())) {
-            binding.edtName.setError("Required");
+            binding.edtName.setError(required);
             binding.edtName.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtFatherName.getText())) {
-            binding.edtFatherName.setError("Required");
+            binding.edtFatherName.setError(required);
             binding.edtFatherName.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtMotherName.getText())) {
-            binding.edtMobile.setError("Required");
+            binding.edtMobile.setError(required);
             binding.edtMotherName.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtDob.getText())) {
-            binding.edtDob.setError("Required");
+            binding.edtDob.setError(required);
             binding.edtDob.requestFocus();
         } else if (!binding.male.isChecked() && !binding.female.isChecked()) {
-            binding.tvGender.setError("Required");
+            binding.tvGender.setError(required);
             binding.tvGender.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtPanNo.getText())) {
-            binding.edtPanNo.setError("Required");
+            binding.edtPanNo.setError(required);
             binding.edtPanNo.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtAadhaar.getText())) {
-            binding.edtAadhaar.setError("Required");
+            binding.edtAadhaar.setError(required);
             binding.edtAadhaar.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtVoter.getText())) {
-            binding.edtVoter.setError("Required");
+            binding.edtVoter.setError(required);
             binding.edtVoter.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtRation.getText())) {
-            binding.edtRation.setError("Required");
+            binding.edtRation.setError(required);
             binding.edtRation.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtNationality.getText())) {
-            binding.edtNationality.setError("Required");
+            binding.edtNationality.setError(required);
             binding.edtNationality.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtHouseNo.getText())) {
-            binding.edtHouseNo.setError("Required");
+            binding.edtHouseNo.setError(required);
             binding.edtHouseNo.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtStreetNumber.getText())) {
-            binding.edtStreetNumber.setError("Required");
+            binding.edtStreetNumber.setError(required);
             binding.edtStreetNumber.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtBlock.getText())) {
-            binding.edtBlock.setError("Required");
+            binding.edtBlock.setError(required);
             binding.edtBlock.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtLandmark.getText())) {
-            binding.edtLandmark.setError("Required");
+            binding.edtLandmark.setError(required);
             binding.edtLandmark.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtVillage.getText())) {
-            binding.edtVillage.setError("Required");
+            binding.edtVillage.setError(required);
             binding.edtVillage.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtPostOffice.getText())) {
-            binding.edtPostOffice.setError("Required");
+            binding.edtPostOffice.setError(required);
             binding.edtPostOffice.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtPoliceSt.getText())) {
-            binding.edtPoliceSt.setError("Required");
+            binding.edtPoliceSt.setError(required);
             binding.edtPoliceSt.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtDistrict.getText())) {
-            binding.edtDistrict.setError("Required");
+            binding.edtDistrict.setError(required);
             binding.edtDistrict.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtCity.getText())) {
-            binding.edtCity.setError("Required");
+            binding.edtCity.setError(required);
             binding.edtCity.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtPinCode.getText())) {
-            binding.edtPinCode.setError("Required");
+            binding.edtPinCode.setError(required);
             binding.edtPinCode.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtMobile.getText())) {
-            binding.edtMobile.setError("Required");
+            binding.edtMobile.setError(required);
             binding.edtMobile.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtEmail.getText())) {
-            binding.edtEmail.setError("Required");
+            binding.edtEmail.setError(required);
             binding.edtEmail.requestFocus();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.edtEmail.getText().toString()).matches()) {
             binding.edtEmail.setError("Email Format is incorrect");
             binding.edtEmail.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtBankName.getText())) {
-            binding.edtBankName.setError("Required");
+            binding.edtBankName.setError(required);
             binding.edtBankName.requestFocus();
         } else if (TextUtils.isEmpty(binding.edtBranch.getText())) {
-            binding.edtBranch.setError("Required");
+            binding.edtBranch.setError(required);
             binding.edtBranch.requestFocus();
         } else {
-
             employee.setEmployeeId(String.valueOf(new Random().nextInt(899999999) + 100000000));
             employee.setPost("Nav Panchayat");
             employee.setName(binding.edtName.getText().toString());
@@ -328,9 +337,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    //When Verify OTP button is clicked.
-    public void verifyOtp(View view) {
-        if (binding.edtVerifyOtp.getText().toString().equals(String.valueOf(OTP))) {
+    public void verifyOtp() {
+        if (binding.edtVerifyOtp.getText().toString().equals(String.valueOf(otp))) {
             viewModel.viewModelSignUp(employee.getEmail(), binding.edtPassword.getText().toString(), employee).observe(this, new Observer<RequestCall>() {
                 @Override
                 public void onChanged(RequestCall requestCall) {
@@ -343,19 +351,27 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         binding.progressBar.setVisibility(View.VISIBLE);
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         binding.signUpBackgroundLayout.setAlpha((float) 0.4);
+                    } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_FAILURE) {
+                        Toast.makeText(SignUpActivity.this, "E-Mail ID already Registered", Toast.LENGTH_LONG).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                finish();
+                            }
+                        }, 3000);
                     }
                 }
             });
         }
     }
 
-    private void registerEmployee(Employee employee) {
+    private void registerEmployee(@NonNull Employee employee) {
         DB.child("Employee").child(employee.getUserId()).setValue(employee).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 SmsManager sms = SmsManager.getDefault();
                 sms.sendTextMessage(binding.edtMobile.getText().toString(), null, "Thanks for Registering for DSI.", sendPi, deliveredPi);
-                Intent intent = new Intent(SignUpActivity.this, userDashboardActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, UserDashboardActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -363,7 +379,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    public void goBack(View view) {
+    public void goBack() {
         binding.verifyLayout.setVisibility(View.GONE);
         binding.signUpBackgroundLayout.setVisibility(View.VISIBLE);
     }

@@ -8,9 +8,14 @@ public class RequestCall {
     private Employee employee;
     private ArrayList<Customer> customers;
     private Customer customer;
+    private String userPost;
 
     public ArrayList<Customer> getCustomers() {
         return customers;
+    }
+
+    public void setCustomers(ArrayList<Customer> customers) {
+        this.customers = customers;
     }
 
     public Customer getCustomer() {
@@ -21,8 +26,12 @@ public class RequestCall {
         this.customer = customer;
     }
 
-    public void setCustomers(ArrayList<Customer> customers) {
-        this.customers = customers;
+    public String getUserPost() {
+        return userPost;
+    }
+
+    public void setUserPost(String userPost) {
+        this.userPost = userPost;
     }
 
     public int getStatus() {

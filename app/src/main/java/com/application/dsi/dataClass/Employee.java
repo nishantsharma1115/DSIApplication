@@ -36,30 +36,6 @@ public class Employee implements Serializable {
     private String zoneCoordinatorId;
     private String userId;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getPost() {
-        return post;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
-    }
-
-    public String getBlockCoordinatorId() {
-        return blockCoordinatorId;
-    }
-
-    public void setBlockCoordinatorId(String blockCoordinatorId) {
-        this.blockCoordinatorId = blockCoordinatorId;
-    }
-
     public Employee(String name, String fatherName, String motherName, String dob, String panNo, String aadhaarNo, String voterNo, String rationNo, String nationality, String house_no, String street_no, String block, String landmark, String village, String postOffice, String policeStation, String district, String city, String pinCode, String mobile, String email, String bankName, String bankBranch, String blockCoordinatorId, String employeeId, String stateCoordinatorId, String districtCoordinatorId, String distributorId, String zoneCoordinatorId) {
         this.name = name;
         this.fatherName = fatherName;
@@ -90,6 +66,33 @@ public class Employee implements Serializable {
         this.districtCoordinatorId = districtCoordinatorId;
         this.distributorId = distributorId;
         this.zoneCoordinatorId = zoneCoordinatorId;
+    }
+
+    public Employee() {
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    public String getBlockCoordinatorId() {
+        return blockCoordinatorId;
+    }
+
+    public void setBlockCoordinatorId(String blockCoordinatorId) {
+        this.blockCoordinatorId = blockCoordinatorId;
     }
 
     public String getStateCoordinatorId() {
@@ -138,9 +141,6 @@ public class Employee implements Serializable {
 
     public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
-    }
-
-    public Employee() {
     }
 
     public String getName() {

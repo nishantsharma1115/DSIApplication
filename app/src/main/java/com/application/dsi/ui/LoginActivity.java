@@ -1,4 +1,4 @@
-package com.application.dsi;
+package com.application.dsi.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,19 +14,18 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dsi.R;
 import com.application.dsi.dataClass.RequestCall;
 import com.application.dsi.databinding.ActivityLoginBinding;
-import com.application.dsi.viewModels.AuthViewModel;
+import com.application.dsi.view_models.AuthViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Objects;
-
-public class loginActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
     ActivityLoginBinding binding;
-    private FirebaseAuth mAuth;
     AuthViewModel viewModel;
+    private FirebaseAuth mAuth;
 
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
@@ -49,6 +48,7 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
         binding.txtWelcomeDesc.setOnClickListener(this);
         binding.btnLogin.setOnClickListener(this);
         binding.txtSignUp.setOnClickListener(this);
+        binding.btnCustomerRegistration.setOnClickListener(this);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
 
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            startActivity(new Intent(this, userDashboardActivity.class));
+            startActivity(new Intent(this, UserDashboardActivity.class));
             finish();
         }
     }
@@ -70,7 +70,7 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         } else if (view.getId() == R.id.txt_signUp) {
-            startActivity(new Intent(loginActivity.this, SignUpActivity.class));
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
         } else if (view.getId() == R.id.btn_login) {
             if (binding.edtPassword.getText().toString().length() < 8) {
                 binding.edtPassword.setError("Password should be 8 character long");
@@ -78,6 +78,9 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
             } else {
                 loginUser();
             }
+        } else if (view.getId() == R.id.btn_customerRegistration) {
+            Intent intent = new Intent(this, CustomerRegistrationActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -86,15 +89,15 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
         String password = binding.edtPassword.getText().toString();
 
         if (email.equals("")) {
-            Toast.makeText(loginActivity.this, "Username Can not be Empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Username Can not be Empty", Toast.LENGTH_SHORT).show();
         } else if (password.equals("")) {
-            Toast.makeText(loginActivity.this, "Password Can Not be Empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Password Can Not be Empty", Toast.LENGTH_SHORT).show();
         } else {
             viewModel.viewModelLogin(email, password).observe(this, new Observer<RequestCall>() {
                 @Override
                 public void onChanged(RequestCall requestCall) {
                     if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("No data Found")) {
-                        Toast toast = Toast.makeText(loginActivity.this, "Employee is not registered!!", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(LoginActivity.this, "Employee is not registered!!", Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
                     } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("Finished")) {
@@ -107,7 +110,7 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         binding.backgroundLayout.setAlpha((float) 0.4);
                     } else if (requestCall.getStatus() == -1) {
-                        Toast.makeText(loginActivity.this, requestCall.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, requestCall.getMessage(), Toast.LENGTH_SHORT).show();
                         binding.loginProgressBar.setVisibility(View.GONE);
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         binding.backgroundLayout.setAlpha(1);
@@ -118,7 +121,7 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
     }
 
     public void updateUi() {
-        Intent intent = new Intent(this, userDashboardActivity.class);
+        Intent intent = new Intent(this, UserDashboardActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

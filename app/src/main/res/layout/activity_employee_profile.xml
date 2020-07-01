@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SignUpActivity">
+        tools:context=".ui.SignUpActivity">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:id="@+id/background"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:context=".employeeProfileActivity">
+                    tools:context=".ui.EmployeeProfileActivity">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profilePicture"
@@ -115,14 +115,41 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_employeeId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/profilePicture">
+
+                        <TextView
+                            android:id="@+id/tv_employeeId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/employee_id"
+                            android:textColor="@color/black"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/employeeId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{employee.employeeId}"
+                            android:textColor="@color/black"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/belowToProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical"
                         android:padding="10dp"
                         app:layout_constraintStart_toStartOf="@id/profilePicture"
-                        app:layout_constraintTop_toBottomOf="@id/profilePicture">
+                        app:layout_constraintTop_toBottomOf="@+id/ll_employeeId">
 
                         <LinearLayout
                             android:id="@+id/ll_dob"
